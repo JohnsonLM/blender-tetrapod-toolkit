@@ -1,9 +1,9 @@
 bl_info = {
-    "name": "Global Bone Rotations",
-    "author": "Digital Life 3D Team",
+    "name": "Tetrapod Toolkit",
+    "author": "TBD",
     "version": (0, 3),
     "blender": (4, 0, 1),
-    "location": "View3D > Properties > GLobal Bone Rotations",
+    "location": "View3D > Properties > Tetrapod Toolkit",
     "description": "Displays and exports global rotations of selected bones.",
     "warning": "",
     "doc_url": "",
@@ -252,11 +252,11 @@ class BoneChangeInfoOperator(bpy.types.Operator):
 ### UI Panel ###
 class BoneRotationStatsPanel(bpy.types.Panel):
     """Creates a panel in the object propeties window"""
-    bl_label = "Global Bone Rotations"
+    bl_label = "Tetrapod Toolkit"
     bl_idname = "OBJECT_PT_bonerotation"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = "Global Bone Rotations"
+    bl_category = "Tetrapod Toolkit"
 
     def draw(self, context):
         layout = self.layout
