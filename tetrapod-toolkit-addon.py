@@ -48,8 +48,14 @@ def get_timecode(scene):
         
 
 def write_pb_rot_in_range_csv(scene, path):
+    min_x = None
+    max_x = None
+    min_y = None
+    max_y = None
+    min_z = None
+    max_z = None
     with open(path, mode='a') as writer:
-        writer = csv.DictWriter(writer, ['frame', 'timecode', 'name', 'X', 'Y', 'Z']) 
+        writer = csv.DictWriter(writer, ['frame', 'timecode', 'name', 'X', 'Y', 'Z', 'min', 'max']) 
         writer.writeheader()
         
         frame_count = scene.measure_end_frame - scene.measure_start_frame
@@ -61,13 +67,37 @@ def write_pb_rot_in_range_csv(scene, path):
                 xrot = degrees(pb_rot.x) - 90
                 yrot = degrees(pb_rot.y)
                 zrot = degrees(pb_rot.z)
+                rot = current_bone_rot(scene, frame)
+                # X axis
+                if max_x == None or rot.to_euler().x >= max_x:
+                    max_x = rot.to_euler().x
+                if min_x == None or rot.to_euler().x <= min_x:
+                    min_x = rot.to_euler().x
+                
+                # Y axis
+                if max_y == None or rot.to_euler().y >= max_y:
+                    max_y = rot.to_euler().y
+                if min_y == None or rot.to_euler().z <= min_z:
+                    min_y = rot.to_euler().y
+                    
+                # Z axis
+                if max_z == None or rot.to_euler().z >= max_z:
+                    max_z = rot.to_euler().z
+                if min_z == None or rot.to_euler().z <= min_z:
+                    min_z = rot.to_euler().z
+                        
+                pb_rot = Object()
+                pb_rot.min = degrees(min_x), degrees(min_y), degrees(min_z)
+                pb_rot.max = degrees(max_x), degrees(max_y), degrees(max_z)
                 row = {
                     "frame": scene.frame_current,
                     "timecode": get_timecode(scene),
                     "name": pb.name,
                     "X": "{:.3f}".format(xrot),
                     "Y": "{:.3f}".format(yrot),
-                    "Z": "{:.3f}".format(zrot)
+                    "Z": "{:.3f}".format(zrot),
+                    'min': pb_rot.min,
+                    'max': pb_rot.max
                 }
                 writer.writerow(row)
 
@@ -228,7 +258,7 @@ class ExportGlobalRotInRangeOperator(bpy.types.Operator):
 
 
 class BoneChangeInfoOperator(bpy.types.Operator):
-    """Info on location change of selected bone"""
+    """Calculate location and rotation data for the selected bone."""
     bl_idname = "object.bone_loc_change"
     bl_label = "Calculate Selected Bone Travel"
 
