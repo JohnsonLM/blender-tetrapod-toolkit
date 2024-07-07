@@ -12,8 +12,8 @@ Here is a general overview of how to get started with using our Blender add-on t
 ## Section B: Downloading our blender-tetrapod-toolkit
 1. Navigate to our [GitHub repo](https://github.com/JohnsonLM/blender-tetrapod-toolkit/tree/main).
 2. Download our folder of files by clicking on the <kbd>green button labeled <>Code</kbd> and then
-	a. selecting *"Download ZIP"*, or
-	b. cloning the repo using the *web URL* or selecting *"Open with GitHub Desktop."*
+	- selecting *"Download ZIP"*, or
+	- cloning the repo using the *web URL* or selecting *"Open with GitHub Desktop."*
 3. Save the folder to a convenient location on your computer (e.g., your Desktop). 
 
 
@@ -43,21 +43,21 @@ The ground is represented by a grid composed of 10 cm x 10 cm squares. The frame
 3. You should now see one of the salamander models highlighted in red and the Tetrapod Toolkit window become populated with numbers. 
 4. Select the bones that you want to measure by clicking the <kbr>Left Mouse Button</kbr> for one bone or <kbr>Shift + Left Mouse Button</kbr> to select multiple bones. 
 5. The Tetrapod Toolkit collects the following data:
-	a. **Timecode** in HH:MM:SS:FF, which is Hours:Minutes:Seconds:Frames
-	b. **Rot** (Rotation in degrees) values represent the rotations of the bone along each of the XYZ axes in the global environment. 
-	c. **Head Loc** (Head Location in centimeters)
-	d. **Tail Loc** (Tail Location in centimeters)
-	e. **Loc Change** (Location Change in centimeters); a negative value just says that the animal was moving towards the bottom of the screen. 
-	f. **Rot Change** (Rotational Change in degrees)
-	g. **Min Angle** (Minimum Angle in degrees)
-	h. **Max Angle** (Maximum Angle in degrees)
+	- **Timecode** in HH:MM:SS:FF, which is Hours:Minutes:Seconds:Frames
+	- **Rot** (Rotation in degrees) values represent the rotations of the bone along each of the XYZ axes in the global environment. 
+	- **Head Loc** (Head Location in centimeters)
+	- **Tail Loc** (Tail Location in centimeters)
+	- **Loc Change** (Location Change in centimeters); a negative value just says that the animal was moving towards the bottom of the screen. 
+	- **Rot Change** (Rotational Change in degrees)
+	- **Min Angle** (Minimum Angle in degrees)
+	- **Max Angle** (Maximum Angle in degrees)
 6. Select the range of frames that you want to analyze by changing the values for <kbd>Frame Range Start:</kbd> and <kbd>Frame Range End:</kbd>. 
 7. Click on <kbr>Calculate Active Bone Travel</kbr> to calculate the data from Frame Start to Frame End.
 8. The new values displayed in the Tetrapod Toolkit window are the data collected from your designated Frame Range. 
 9. You can then export the rotational data from the Tetrapod Toolkit by using:
-	a. <kbd>Export Selected Bone Rotations</kbd> for the entire length of the simulation
-	b. <kbd>Export Selected Bone Rotations in Range</kbd> to save the data within the frame range specified
-	c. Note: at the moment, only the rotational data are exported into the spreadsheet with these operations. Location data can be manually collected from the Tetrapod Toolkit window. 
+	- <kbd>Export Selected Bone Rotations</kbd> for the entire length of the simulation
+	- <kbd>Export Selected Bone Rotations in Range</kbd> to save the data within the frame range specified
+	- At the moment, only the rotational data are exported into the spreadsheet with these operations. Location data can be manually collected from the Tetrapod Toolkit window. 
 
 > [!NOTE] 
 > "Create Muscle" button is currently in development; it will enable you to create 3D muscles between bones to simulate the effects of soft tissue on bone mobility. 
