@@ -30,8 +30,8 @@ However, you will only need to do this once after installing Blender. If you ins
 8. You will now see a new tab labeled "Tetrapod Toolkit" to the right side of the grid. If not, you may need to click the "<" symbol next to "Options" to expand the tabs.  
 
 ## Section D: Overview of the Tetrapod Toolkit
-[!IMPORTANT]
-Blender does not perform well when working with small values, so we changed the Unit Scale to 0.1 meters rather than 1 meters to make the output in units of centimeters. You can double-check information about the {units and scaling](https://docs.blender.org/manual/en/latest/scene_layout/scene/properties.html) under the <kbr>Scene Properties</kbr> button that looks like a teardrop next to a circle. 
+> [!IMPORTANT]
+> Blender does not perform well when working with small values, so we changed the Unit Scale to 0.1 meters rather than 1 meters to make the output in units of centimeters. You can double-check information about the {units and scaling](https://docs.blender.org/manual/en/latest/scene_layout/scene/properties.html) under the <kbr>Scene Properties</kbr> button that looks like a teardrop next to a circle. 
 /
 
 You will see three models of *Andrias japonicus* that exhibit different degrees of lateral bending, where the leftmost has no lateral bending, the middle has slight lateral bending, and the rightmost has extreme lateral bending.
@@ -59,6 +59,7 @@ The ground is represented by a grid composed of 10 cm x 10 cm squares. The frame
 	b. <kbd>Export Selected Bone Rotations in Range</kbd> to save the data within the frame range specified
 	c. Note: at the moment, only the rotational data are exported into the spreadsheet with these operations. Location data can be manually collected from the Tetrapod Toolkit window. 
 
-[!NOTE] "Create Muscle" button is currently in development; it will enable you to create 3D muscles between bones to simulate the effects of soft tissue on bone mobility. 
+> [!NOTE] 
+> "Create Muscle" button is currently in development; it will enable you to create 3D muscles between bones to simulate the effects of soft tissue on bone mobility. 
 
 
