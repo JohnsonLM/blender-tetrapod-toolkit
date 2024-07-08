@@ -1,0 +1,10 @@
+file,model,bone,modifierType,modifierAmplitude,modifierPhaseMultiple,modifierPhaseOffset,modifierValueOffset,frameStart,frameEnd,LocChangeX_cm,LocChangeY_cm,LocChangeZ_cm,RotChangeX_deg,RotChangeY_deg,RotChangeZ_deg,MinAngleX_deg,MinAngleY_deg,MinAngleZ_deg,MaxAngleX_deg,MaxAngleY_deg,MaxAngleZ_deg
+Andrias_Salamander_procedural_bending_04.blend,Andrias.001,trunk.002,sine,0.195,-0.040,1.500,0.000,0,90,0.000,-103.132,0.000,-0.051,2.415,41.516,176.595,-1.275,-21.979,176.844,1.279,22.032
+Andrias_Salamander_procedural_bending_04.blend,Andrias.001,trunk.003,sine,0.164,0.040,-1.500,0.000,0,90,28.442,-103.739,0.036,0.022,1.678,6.379,178.637,-0.887,-3.371,178.744,0.889,3.379
+Andrias_Salamander_procedural_bending_04.blend,Andrias.001,rear_R.IK,none,NA,NA,NA,NA,0,90,0.000,-182.197,0.000,0.000,0.000,0.000,0.000,0.000,180.000,0.000,0.000,180.000
+Andrias_Salamander_procedural_bending_04.blend,Andrias.002,trunk.002,none,NA,NA,NA,NA,0,90,0.000,-101.328,0.000,0.000,0.000,0.000,176.595,0.000,0.000,176.595,0.000,0.000
+Andrias_Salamander_procedural_bending_04.blend,Andrias.002,trunk.003,none,NA,NA,NA,NA,0,90,0.000,-101.328,0.000,0.000,0.000,0.000,178.744,0.000,0.000,178.744,0.000,0.000
+Andrias_Salamander_procedural_bending_04.blend,Andrias.002,rear_R.IK,none,NA,NA,NA,NA,0,90,0.000,-178.588,0.000,0.000,0.000,0.000,0.000,0.000,180.000,0.000,0.000,180.000
+Andrias_Salamander_procedural_bending_04.blend,Andrias.003,trunk.002,sine,0.493,0.040,-1.500,0.000,0,90,0.000,-86.889,0.000,-0.288,5.702,113.903,176.595,-2.945,-59.845,178.297,2.948,59.966
+Andrias_Salamander_procedural_bending_04.blend,Andrias.003,trunk.003,sine,0.493,0.040,-1.500,0.000,0,90,67.128,-90.273,0.201,0.147,4.133,14.376,177.932,-2.145,-7.445,178.744,2.149,7.455
+Andrias_Salamander_procedural_bending_04.blend,Andrias.003,rear_R.IK,sine,0.493,0.040,-1.500,0.000,0,90,0.000,-154.670,0.000,0.000,0.000,0.000,0.000,0.000,180.000,0.000,0.000,180.000
