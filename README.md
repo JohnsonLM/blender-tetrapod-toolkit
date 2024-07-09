@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/738605090.svg)](https://zenodo.org/doi/10.5281/zenodo.12701526)
+
 # blender-tetrapod-toolkit
 Tools and data for simulating tetrapod locomotion using Blender.
 
