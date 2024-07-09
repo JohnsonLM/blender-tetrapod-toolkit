@@ -1,7 +1,7 @@
 bl_info = {
     "name": "Tetrapod Toolkit",
-    "author": "TBD",
-    "version": (0, 3),
+    "author": "Digital Life 3D",
+    "version": (1, 0),
     "blender": (4, 0, 1),
     "location": "View3D > Properties > Tetrapod Toolkit",
     "description": "Displays and exports global rotations of selected bones.",
