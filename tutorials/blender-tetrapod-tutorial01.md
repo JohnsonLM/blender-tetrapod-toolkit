@@ -32,7 +32,7 @@ However, you will only need to do this once after installing Blender. If you ins
 ## Section D: Overview of the Tetrapod Toolkit
 > [!IMPORTANT]
 > Blender does not perform well when working with small values, so we changed the Unit Scale to 0.1 meters rather than 1 meters to make the output in units of centimeters. You can double-check information about the {units and scaling](https://docs.blender.org/manual/en/latest/scene_layout/scene/properties.html) under the <kbr>Scene Properties</kbr> button that looks like a teardrop next to a circle. 
-/
+
 
 You will see three models of *Andrias japonicus* that exhibit different degrees of lateral bending, where the leftmost has no lateral bending, the middle has slight lateral bending, and the rightmost has extreme lateral bending.
 The ground is represented by a grid composed of 10 cm x 10 cm squares. The frame rate is 30 fps (frames per second), which you can double-check under [Output Properties](https://www.skillademia.com/3d/blender/how-to-use-animation-timeline-in-blender/). /
@@ -62,4 +62,12 @@ The ground is represented by a grid composed of 10 cm x 10 cm squares. The frame
 > [!NOTE] 
 > "Create Muscle" button is currently in development; it will enable you to create 3D muscles between bones to simulate the effects of soft tissue on bone mobility. 
 
+
+## Section D: Mesauring stride length, stride frequency, and lateral bending in a salamander model
+The overall speed of an animal can be affected by its stride length and/or stride frequency. Stride length is the distance the body travels during one limb cycle, which is composed of the stance phase when the foot is in contact with the ground and the swing phase when the foot is airborne. 
+Subsequently, stride length is composed of the step length which is the distance the body  travel during only the stance phase, and the float distance is the distance the body travels when no limbs are in contact with the ground ([McElroy and Reilly 2009](https://doi.org/10.1111/j.1095-8312.2009.01230.x)).
+Stride frequency is the number of strides per second. Sprawling quadrupeds with short limbs generally use short stride lengths and high stride frequencies at higher locomotor speeds whereas those with long limbs tend to use long stride length with lower stride frequencies ([McElroy and Reilly 2009](https://doi.org/10.1111/j.1095-8312.2009.01230.x)).
+However, quadrupeds with short limbs, such as salamanders, can increase lateral bending of their trunk to increase their stride length ([Ashley-Ross and Bechtel 2004](https://doi.org/10.1242/jeb.00769). 
+
+Below, we describe how you can measure stride length and stride frequency from a 3D model of the Japanese giant salamander (*Andrias japonicus*) in Blender, and then test the hypothesis that increased lateral bending leads to an increase in stride length. 
 
