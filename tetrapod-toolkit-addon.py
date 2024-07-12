@@ -17,6 +17,8 @@ import bmesh
 from math import degrees
 import mathutils
 
+degree_sign = u'\N{DEGREE SIGN}'
+
 # Allows for initialization of empty objects.
 class Object(object):
     pass
@@ -544,9 +546,9 @@ class BoneRotationStatsPanel(bpy.types.Panel):
             row.label(text="Z")
             row = box.row()
             row.label(text='Rot:')
-            row.label(text="{:.3f}".format(bone.rotation[0]))
-            row.label(text="{:.3f}".format(bone.rotation[1]))
-            row.label(text="{:.3f}".format(bone.rotation[2]))
+            row.label(text="{:.3f}".format(bone.rotation[0]) + degree_sign)
+            row.label(text="{:.3f}".format(bone.rotation[1]) + degree_sign)
+            row.label(text="{:.3f}".format(bone.rotation[2]) + degree_sign)
             row = box.row()
             row.label(text='Head Loc: ')
             row.label(text="{:.3f}".format(bone.location_head[0]))
@@ -562,28 +564,28 @@ class BoneRotationStatsPanel(bpy.types.Panel):
             row.operator("object.bone_loc_change", icon='MOD_TIME')
             row = box.row()
             row.label(text="Loc Change:")
-            row.label(text="{:.3f}".format(degrees(bpy.context.scene.active_bone_loc_difference[0])))
-            row.label(text="{:.3f}".format(degrees(bpy.context.scene.active_bone_loc_difference[1])))
-            row.label(text="{:.3f}".format(degrees(bpy.context.scene.active_bone_loc_difference[2])))
+            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_loc_difference[0]))
+            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_loc_difference[1]))
+            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_loc_difference[2]))
             
             row = box.row()
             row.label(text="Rot Change:")
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_difference[0]))
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_difference[1]))
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_difference[2]))
+            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_difference[0]) + degree_sign)
+            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_difference[1]) + degree_sign)
+            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_difference[2]) + degree_sign)
             
             row = box.row()
             row.label(text="Min Angle:")
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_min[0]))
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_min[1]))
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_min[2]))
+            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_min[0]) + degree_sign)
+            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_min[1]) + degree_sign)
+            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_min[2]) + degree_sign)
             
             row = box.row()
             row.label(text="Max Angle:")
 
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_max[0]))
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_max[1]))
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_max[2]))
+            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_max[0]) + degree_sign)
+            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_max[1]) + degree_sign)
+            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_max[2]) + degree_sign)
         except Exception:
              pass
         
