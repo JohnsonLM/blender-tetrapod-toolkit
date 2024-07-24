@@ -135,8 +135,9 @@ def current_pb_transforms():
     """
     bones = []
     for pb in bpy.context.selected_pose_bones:
-        pb_head_loc = pb.head
-        pb_tail_loc = pb.tail
+        unit_scale = bpy.context.scene.unit_settings.scale_length
+        pb_head_loc = pb.head * unit_scale
+        pb_tail_loc = pb.tail * unit_scale
         rotation = pb.matrix.to_euler()
         rotation = mathutils.Vector((
             degrees(rotation.x), 
@@ -155,9 +156,10 @@ def current_pb_transforms():
 
 def current_bone_location(scene, frame):
     scene.frame_set(frame)
+    unit_scale = scene.unit_settings.scale_length
     location, rotation, scale = bpy.context.active_pose_bone.matrix.decompose()
     
-    return location
+    return location * unit_scale
 
 
 def current_bone_rot(scene, frame):
@@ -534,58 +536,79 @@ class BoneRotationStatsPanel(bpy.types.Panel):
         row.label(text="Timecode: " + get_timecode(bpy.context.scene), icon='TIME')
         try:
             bone = current_pb_transforms()[0]
+            
             box = layout.box()
             row = box.row()
-            row.label(text="Active Bone", icon='BONE_DATA')
+            row.label(text="Muscle Creation", icon='MOD_OUTLINE')
             row = box.row()
             row.operator("object.create_muscle", icon='MOD_OUTLINE')
-            row = box.row()
-            row.label(text="")
-            row.label(text="X")
-            row.label(text="Y")
-            row.label(text="Z")
-            row = box.row()
-            row.label(text='Rot:')
-            row.label(text="{:.3f}".format(bone.rotation[0]) + degree_sign)
-            row.label(text="{:.3f}".format(bone.rotation[1]) + degree_sign)
-            row.label(text="{:.3f}".format(bone.rotation[2]) + degree_sign)
-            row = box.row()
-            row.label(text='Head Loc: ')
-            row.label(text="{:.3f}".format(bone.location_head[0]))
-            row.label(text="{:.3f}".format(bone.location_head[1]))
-            row.label(text="{:.3f}".format(bone.location_head[2]))
-            row = box.row()
-            row.label(text='Tail Loc: ')
-            row.label(text="{:.3f}".format(bone.location_tail[0]))
-            row.label(text="{:.3f}".format(bone.location_tail[1]))
-            row.label(text="{:.3f}".format(bone.location_tail[2]))
             
+            box = layout.box()
+            split_factor = 0.4
+            split = box.split(factor=split_factor, align=False)
+            col1,col2,col3,col4 = (split.column(),split.column(),split.column(),split.column())
+            col1.label(text="Active Bone", icon='BONE_DATA')
+            col2.label(text="X")
+            col3.label(text="Y")
+            col4.label(text="Z")
+            
+            split = box.split(factor=split_factor, align=False)
+            col1,col2,col3,col4 = (split.column(),split.column(),split.column(),split.column())
+            col1.label(text='Global Rotation:')
+            col2.label(text="{:.3f}".format(bone.rotation[0]) + degree_sign)
+            col3.label(text="{:.3f}".format(bone.rotation[1]) + degree_sign)
+            col4.label(text="{:.3f}".format(bone.rotation[2]) + degree_sign)
+            
+            split = box.split(factor=split_factor, align=False)
+            col1,col2,col3,col4 = (split.column(),split.column(),split.column(),split.column())
+            col1.label(text='Global H Location: ')
+            col2.label(text="{:.3f}".format(bone.location_head[0]) + " m")
+            col3.label(text="{:.3f}".format(bone.location_head[1]) + " m")
+            col4.label(text="{:.3f}".format(bone.location_head[2]) + " m")
+
+            split = box.split(factor=split_factor, align=False)
+            col1,col2,col3,col4 = (split.column(),split.column(),split.column(),split.column())
+            col1.label(text='Global T Location: ')
+            col2.label(text="{:.3f}".format(bone.location_tail[0]) + " m")
+            col3.label(text="{:.3f}".format(bone.location_tail[1]) + " m")
+            col4.label(text="{:.3f}".format(bone.location_tail[2]) + " m")
+
             row = box.row()
             row.operator("object.bone_loc_change", icon='MOD_TIME')
-            row = box.row()
-            row.label(text="Loc Change:")
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_loc_difference[0]))
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_loc_difference[1]))
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_loc_difference[2]))
+            
+            split = box.split(factor=split_factor, align=False)
+            col1,col2,col3,col4 = (split.column(),split.column(),split.column(),split.column())
+            col1.label(text="Location Change:")
+            col2.label(text="{:.3f}".format(bpy.context.scene.active_bone_loc_difference[0]) + " m")
+            col3.label(text="{:.3f}".format(bpy.context.scene.active_bone_loc_difference[1]) + " m")
+            col4.label(text="{:.3f}".format(bpy.context.scene.active_bone_loc_difference[2]) + " m")
+            
+            split = box.split(factor=split_factor, align=False)
+            col1,col2,col3,col4 = (split.column(),split.column(),split.column(),split.column())
+            col1.label(text="Rotation Change:")
+            col2.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_difference[0]) + degree_sign)
+            col3.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_difference[1]) + degree_sign)
+            col4.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_difference[2]) + degree_sign)
+            
+            split = box.split(factor=split_factor, align=False)
+            col1,col2,col3,col4 = (split.column(),split.column(),split.column(),split.column())
+            col1.label(text="Min Angle:")
+            col2.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_min[0]) + degree_sign)
+            col3.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_min[1]) + degree_sign)
+            col4.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_min[2]) + degree_sign)
+            
+            split = box.split(factor=split_factor, align=False)
+            col1,col2,col3,col4 = (split.column(),split.column(),split.column(),split.column())
+            col1.label(text="Max Angle:")
+            col2.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_max[0]) + degree_sign)
+            col3.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_max[1]) + degree_sign)
+            col4.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_max[2]) + degree_sign)
             
             row = box.row()
-            row.label(text="Rot Change:")
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_difference[0]) + degree_sign)
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_difference[1]) + degree_sign)
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_difference[2]) + degree_sign)
-            
+            box = row.box()
             row = box.row()
-            row.label(text="Min Angle:")
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_min[0]) + degree_sign)
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_min[1]) + degree_sign)
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_min[2]) + degree_sign)
+            row.label(text="Active: " + bpy.context.active_bone.name)
             
-            row = box.row()
-            row.label(text="Max Angle:")
-
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_max[0]) + degree_sign)
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_max[1]) + degree_sign)
-            row.label(text="{:.3f}".format(bpy.context.scene.active_bone_rot_max[2]) + degree_sign)
         except Exception:
              pass
         
@@ -619,7 +642,16 @@ class BoneRotationStatsPanel(bpy.types.Panel):
             row = box.row()
             row.operator("object.export_global_rot_in_range", icon='EXPORT')
             row = box.row()
+            box = row.box()
+            row = box.row()
             row.label(text="Selected: " + str(len(bpy.context.selected_pose_bones)))
+            for idx, bone in enumerate(bpy.context.selected_pose_bones):
+                if idx % 3 == 0:
+                    row = box.row()
+                    row.label(text=bone.name)
+                else:
+                    row.label(text=bone.name)
+                
 
 def register():
     bpy.utils.register_class(ExportGlobalRotOperator)
